@@ -1,0 +1,36 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class test {
+
+	 public static void main(String[] args) {
+	        // Chuỗi kết nối đến SQL Server
+	        String url = "jdbc:sqlserver://localhost:1433;databaseName=QL_giangvien_hotensv;encrypt=true;trustServerCertificate=true";
+	        String user = "BACH";  // Đổi thành tài khoản SQL của bạn
+	        String password = "123456"; // Đổi thành mật khẩu SQL của bạn
+
+	        try {
+	            // Tải JDBC Driver
+	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	            
+	            // Thử kết nối đến SQL Server
+	            Connection conn = DriverManager.getConnection(url, user, password);
+	            
+	            if (conn != null) {
+	                System.out.println("✅ Kết nối thành công!");
+	            } else {
+	                System.out.println("❌ Kết nối thất bại!");
+	            }
+
+	            // Đóng kết nối
+	            conn.close();
+	        } catch (ClassNotFoundException e) {
+	            System.out.println("❌ Không tìm thấy Driver JDBC!");
+	            e.printStackTrace();
+	        } catch (SQLException e) {
+	            System.out.println("❌ Lỗi kết nối SQL!");
+	            e.printStackTrace();
+	        }
+	    }
+	}

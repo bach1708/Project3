@@ -1,0 +1,63 @@
+package Controller;
+
+import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import DAO.SanPhamDAO; // Đảm bảo bạn đã nhập đúng lớp DAO
+import Model.SanPham;
+
+@WebServlet("/Backend/SanPham/updateSanPham")
+public class updateSanPham extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private SanPhamDAO sanPhamDao; // Đảm bảo DAO được khai báo đúng
+
+    public void init() {
+        sanPhamDao = new SanPhamDAO(); // Khởi tạo DAO cho SanPham
+    }
+
+    // Phương thức GET để lấy thông tin sản phẩm từ database và hiển thị lên form
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Lấy tham số sanPhamId từ URL (int thay vì String)
+        int sanPhamId = Integer.parseInt(request.getParameter("sanPhamId"));
+        
+        // Lấy sản phẩm từ database
+        SanPham sanPham = sanPhamDao.getSanPhamById(sanPhamId);
+        
+        // Đưa sản phẩm vào request để hiển thị trên form update
+        request.setAttribute("sanPham", sanPham);
+
+        // Chuyển hướng đến trang updateSanPham.jsp để hiển thị thông tin sản phẩm
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Backend/SanPham/updateSanPham.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    // Phương thức POST để cập nhật sản phẩm vào database
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+
+        // Lấy các tham số từ form
+        int sanPhamId = Integer.parseInt(request.getParameter("sanPhamId"));
+        String tenSP = request.getParameter("tenSP");
+        String anh = request.getParameter("anh");
+        String danhMuc = request.getParameter("danhMuc");
+        int gia = Integer.parseInt(request.getParameter("gia"));
+        int soLuong = Integer.parseInt(request.getParameter("soLuong"));
+        String moTa = request.getParameter("moTa");
+
+        // Tạo đối tượng SanPham mới
+        SanPham sanPham = new SanPham(sanPhamId, tenSP, moTa, anh, gia, soLuong, danhMuc);
+
+        // Cập nhật sản phẩm trong cơ sở dữ liệu
+        sanPhamDao.updateSanPham(sanPham);
+
+        // Chuyển hướng về danh sách sản phẩm sau khi cập nhật
+        response.sendRedirect("listSanPham.jsp");
+    }
+}

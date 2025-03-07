@@ -1,0 +1,34 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
+<head>
+    <title>Danh sách Sản Phẩm</title>
+</head>
+<body>
+    <h2>Danh sách sản phẩm</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Hình ảnh</th>
+                <th>Danh mục</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="sanPham" items="${sanPhams}">
+                <tr>
+                    <td>${sanPham.nvb_SanPhamId}</td>
+                    <td>${sanPham.nvb_TenSanPham}</td>
+                    <td>${sanPham.nvb_Gia}</td>
+                    <td>${sanPham.nvb_SoLuong}</td>
+                    <td><img src="${sanPham.nvb_HinhAnh}" alt="${sanPham.nvb_TenSanPham}" width="100"></td>
+                    <td>${sanPham.nvb_DanhMuc}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
+</html>

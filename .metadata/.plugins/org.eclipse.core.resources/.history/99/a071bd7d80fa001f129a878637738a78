@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng Nhập User</title>
+</head>
+<body>
+    <h2>Đăng Nhập User</h2>
+    <form action="${pageContext.request.contextPath}/Backend/User/userLogin" method="POST">
+        <label for="username">Tên người dùng:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Đăng Nhập</button>
+    </form>
+    <div>
+        <%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "" %>
+    </div>
+    <!-- Liên kết tới trang đăng nhập Admin -->
+    <div style="margin-top: 20px;">
+        <a href="${pageContext.request.contextPath}/Backend/User/adminLogin" style="text-decoration: none; color: #007bff;">Đăng nhập với tài khoản Admin</a>
+    </div>
+</body>
+</html>

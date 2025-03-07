@@ -1,0 +1,52 @@
+/* Header với hiệu ứng gradient xanh lam -> trắng */
+header {
+    background: linear-gradient(to bottom, #007bff, #ffffff);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Wrapper chứa tất cả ảnh */
+.slideshow-wrapper {
+    display: flex;
+    width: 500%; /* 5 ảnh x 100% */
+    animation: slide 17.5s infinite linear;
+}
+
+/* Mỗi ảnh chiếm 100% không gian */
+.slide {
+    width: 100%;
+    flex: 1;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+/* Animation tự động di chuyển */
+@keyframes slide {
+    0% { transform: translateX(0%); }
+    20% { transform: translateX(0%); }  /* Ảnh 1 dừng */
+    
+    25% { transform: translateX(-100%); }
+    45% { transform: translateX(-100%); } /* Ảnh 2 dừng */
+    
+    50% { transform: translateX(-200%); }
+    70% { transform: translateX(-200%); } /* Ảnh 3 dừng */
+    
+    75% { transform: translateX(-300%); }
+    95% { transform: translateX(-300%); } /* Ảnh 4 dừng */
+    
+    100% { transform: translateX(-400%); } /* Quay về ảnh đầu */
+}

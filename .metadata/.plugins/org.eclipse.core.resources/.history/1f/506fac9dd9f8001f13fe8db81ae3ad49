@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Văn Phòng Phẩm Online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; text-align: center;">
+    <%@ include file="Layout/header.jsp" %>
+    <!-- Header -->
+    <header style="background: linear-gradient(to bottom, #007bff, #ffffff); color: black; padding: 20px 0; text-align: center;">
+        <h1>🖊 Cửa Hàng Văn Phòng Phẩm Nhà Bách</h1>
+        <p>Chất lượng - Tiện lợi - Giá tốt</p>
+    </header>
+
+    <!-- Hình ảnh giới thiệu -->
+    <section class="slideshow-container">
+        <div class="slideshow-wrapper">
+            <div class="slide"><img src="images/biapage1.jpg" alt="Hình 1"></div>
+            <div class="slide"><img src="images/biapage2.jpg" alt="Hình 2"></div>
+            <div class="slide"><img src="images/biapage3.jpg" alt="Hình 3"></div>
+            <div class="slide"><img src="images/biapage4.jpg" alt="Hình 4"></div>
+            <div class="slide"><img src="images/biapage5.jpg" alt="Hình 5"></div>
+        </div>
+    </section>
+
+    <!-- Mô tả về cửa hàng -->
+    <section style="width: 80%; margin: auto; text-align: justify; background: white; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <h2 style="text-align: center; color: #007bff;">Giới Thiệu Cửa Hàng</h2>
+        <p>
+            Chào mừng bạn đến với **Văn Phòng Phẩm Online** - địa chỉ đáng tin cậy chuyên cung cấp các mặt hàng văn phòng phẩm chất lượng cao.
+            Chúng tôi cam kết mang đến cho khách hàng những sản phẩm tốt nhất với giá cả hợp lý, đáp ứng nhu cầu học tập và làm việc.
+        </p>
+        <p>
+            Với hơn **5 năm kinh nghiệm**, chúng tôi tự hào là nhà cung cấp **sỉ và lẻ** các sản phẩm như:
+        </p>
+        <ul>
+            <li>✏ Bút bi, bút chì, bút dạ quang</li>
+            <li>📖 Vở học sinh, sổ ghi chú, giấy in</li>
+            <li>📏 Thước kẻ, compa, dụng cụ vẽ</li>
+            <li>📌 Kẹp giấy, hồ dán, băng keo</li>
+            <li>💼 File tài liệu, bìa hồ sơ, kẹp ghim</li>
+        </ul>
+    </section>
+
+
+    <%@ include file="Layout/footer.jsp" %>
+</body>
+</html>

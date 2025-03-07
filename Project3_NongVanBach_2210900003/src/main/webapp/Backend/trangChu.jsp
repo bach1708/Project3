@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Văn Phòng Phẩm Online</title>
+    
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; text-align: center;">
+    <%@ include file="Layout/header.jsp" %>
+    <!-- Header -->
+    <header style="background: linear-gradient(to bottom, #007bff, #ffffff); color: black; padding: 5px 0; text-align: center;">
+        <h1>🖊 Cửa Hàng Văn Phòng Phẩm Nhà Bách</h1>
+        <p>Chất lượng - Tiện lợi - Giá tốt</p>
+    </header>
+
+    <!-- Hình ảnh giới thiệu -->
+  <!-- Slideshow Container -->
+    <section style="position: relative; width: 80%; height: 700px; margin: auto; overflow: hidden; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
+        <div style="display: flex; width: 500%; height: 100%; animation: slide 26s infinite;">
+            <div style="width: 100%; flex: 1;"><img src="${pageContext.request.contextPath}/images/biapage1.jpg" alt="Hình 1" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div style="width: 100%; flex: 1;"><img src="${pageContext.request.contextPath}/images/biapage2.jpg" alt="Hình 2" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div style="width: 100%; flex: 1;"><img src="${pageContext.request.contextPath}/images/biapage3.png" alt="Hình 3" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div style="width: 100%; flex: 1;"><img src="${pageContext.request.contextPath}/images/biapage4.jpg" alt="Hình 4" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div style="width: 100%; flex: 1;"><img src="${pageContext.request.contextPath}/images/biapage5.jpg" alt="Hình 5" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        </div>
+    </section>
+
+    <!-- Animation Slideshow -->
+    <style>
+        @keyframes slide {
+            0% { transform: translateX(0%); }
+            18.18% { transform: translateX(0%); } /* 3.5s dừng */
+
+            22% { transform: translateX(-20%); }
+            40.18% { transform: translateX(-20%); } /* 3.5s dừng */
+
+            44% { transform: translateX(-40%); }
+            62.18% { transform: translateX(-40%); } /* 3.5s dừng */
+
+            66% { transform: translateX(-60%); }
+            84.18% { transform: translateX(-60%); } /* 3.5s dừng */
+
+            88% { transform: translateX(-80%); }
+            100% { transform: translateX(-80%); } /* 3.5s dừng, quay lại ảnh đầu */
+        }
+    </style>
+    <!-- Mô tả về cửa hàng -->
+    <section style="width: 80%; margin: auto; display: flex; justify-content: space-between; align-items: center; background: white; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    
+    <!-- Phần trái: Nội dung giới thiệu -->
+    <div style="width: 55%; text-align: justify; padding-right: 20px;">
+        <h2 style="text-align: center; color: #007bff;">Giới Thiệu Cửa Hàng</h2>
+        <p>
+            Chào mừng bạn đến với <strong>Văn Phòng Phẩm Online</strong> - địa chỉ đáng tin cậy chuyên cung cấp đa dạng các sản phẩm văn phòng phẩm với chất lượng cao, đáp ứng mọi nhu cầu từ học tập đến công việc văn phòng.
+        </p>
+        <p>
+            Chúng tôi cam kết mang đến những sản phẩm tốt nhất với **giá cả hợp lý**, hỗ trợ tối đa cho cá nhân, doanh nghiệp và trường học trong việc sử dụng các dụng cụ văn phòng thiết yếu.
+            Với phương châm <strong>"Chất lượng - Tiện lợi - Giá tốt"</strong>, cửa hàng chúng tôi không ngừng đổi mới, cập nhật các sản phẩm mới nhất để đáp ứng xu hướng tiêu dùng hiện đại.
+        </p>
+        <p>
+            Với hơn **5 năm kinh nghiệm**, chúng tôi tự hào là nhà cung cấp **sỉ và lẻ** các sản phẩm văn phòng phẩm chất lượng cao, phục vụ hàng nghìn khách hàng trên toàn quốc.
+        </p>
+        <p><strong>Chúng tôi cung cấp:</strong></p>
+        <ul>
+            <li>✏ <strong>Bút các loại:</strong> Bút bi, bút chì, bút dạ quang, bút lông bảng, bút máy.</li>
+            <li>📖 <strong>Giấy - Vở:</strong> Vở học sinh, sổ ghi chú, giấy in A4, A5, giấy màu, giấy mỹ thuật.</li>
+            <li>📏 <strong>Dụng cụ học tập:</strong> Thước kẻ, compa, bảng vẽ, dụng cụ đo lường.</li>
+            <li>📌 <strong>Văn phòng phẩm:</strong> Kẹp giấy, hồ dán, băng keo, ghim bấm, kéo cắt giấy.</li>
+            <li>💼 <strong>Hồ sơ - Lưu trữ:</strong> Bìa hồ sơ, file tài liệu, túi đựng giấy tờ, kẹp ghim.</li>
+            <li>📂 <strong>Đồ dùng văn phòng:</strong> Máy tính cầm tay, bấm kim, bảng ghi chú, sticker văn phòng.</li>
+        </ul>
+        <p>
+            Bên cạnh đó, chúng tôi luôn có **chính sách ưu đãi đặc biệt** cho khách hàng đặt hàng số lượng lớn, hỗ trợ giao hàng nhanh chóng, tiện lợi.
+            Nếu bạn đang tìm kiếm một địa chỉ mua sắm văn phòng phẩm uy tín, hãy để **Văn Phòng Phẩm Online** đồng hành cùng bạn!
+        </p>
+    </div>
+
+    <!-- Phần phải: Hình ảnh minh họa -->
+    <div style="width: 40%; text-align: center;">
+        <a>Có thể bạn sẽ thích</a>
+    </div>
+</section>
+
+
+    <%@ include file="Layout/footer.jsp" %>
+</body>
+</html>

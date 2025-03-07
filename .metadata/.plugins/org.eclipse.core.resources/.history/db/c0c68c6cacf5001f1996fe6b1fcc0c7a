@@ -1,0 +1,22 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class test {
+
+	 public static void main(String[] args) {
+	        // Thông tin kết nối
+	        String url = "jdbc:sqlserver://BACH:1433;databaseName=BT1_CSDL;encrypt=true;trustServerCertificate=true";
+	        String user = "BACH/kunko";
+	        String password = "";
+
+	        try {
+	            Connection conn = DriverManager.getConnection(url, user, password);
+	            System.out.println("✅ Kết nối SQL Server thành công!");
+	            conn.close();
+	        } catch (SQLException e) {
+	            System.out.println("❌ Lỗi kết nối SQL!");
+	            e.printStackTrace();
+	        }
+	    }
+	}
