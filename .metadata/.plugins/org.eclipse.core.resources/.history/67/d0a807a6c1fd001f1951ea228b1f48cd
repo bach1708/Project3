@@ -1,0 +1,105 @@
+/* Thiết lập cơ bản cho toàn trang */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+/* Header chung */
+header {
+    background: linear-gradient(to bottom, #007bff, #ffffff);
+    color: black;
+    padding: 5px 0;
+    text-align: center;
+}
+
+/* Slideshow Container */
+.container-slideshow {
+    position: relative;
+    width: 80%;
+    height: 700px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slide-wrapper {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    animation: slide 26s infinite;
+}
+
+.slide-wrapper > div {
+    width: 100%;
+    flex: 1;
+}
+
+.slide-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Animation cho slideshow */
+@keyframes slide {
+    0% { transform: translateX(0%); }
+    18.18% { transform: translateX(0%); }
+    22% { transform: translateX(-20%); }
+    40.18% { transform: translateX(-20%); }
+    44% { transform: translateX(-40%); }
+    62.18% { transform: translateX(-40%); }
+    66% { transform: translateX(-60%); }
+    84.18% { transform: translateX(-60%); }
+    88% { transform: translateX(-80%); }
+    100% { transform: translateX(-80%); }
+}
+
+/* Content section chứa thông tin giới thiệu */
+.content-section {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Phần trái của content */
+.content-section .left {
+    width: 55%;
+    text-align: justify;
+    padding: 0 20px;
+}
+
+/* Phần phải của content */
+.content-section .right {
+    width: 40%;
+    text-align: center;
+}
+
+/* Các tiêu đề chung */
+h1, h2 {
+    color: #000000;
+}
+
+/* Các danh sách */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+ul li strong {
+    color: #007bff;
+}

@@ -1,0 +1,32 @@
+@WebFilter("/Backend/*")
+public class AdminFilter implements Filter {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        // Lấy đường dẫn (URI) hiện tại
+        String uri = req.getRequestURI();  // vd: /Project3_NongVanBach_2210900003/Backend/User/adminLogin.jsp
+        
+        // Nếu đường dẫn chứa adminLogin.jsp thì bỏ qua kiểm tra
+        if (uri.contains("adminLogin.jsp") || uri.contains("adminLogin")) {
+            chain.doFilter(request, response);
+            return;
+        }
+        
+        // Nếu đường dẫn không phải adminLogin, ta kiểm tra session admin
+        HttpSession session = req.getSession(false);
+        if (session == null || session.getAttribute("admin") == null) {
+            // Chưa đăng nhập Admin → Chuyển hướng trang đăng nhập
+            res.sendRedirect(req.getContextPath() + "/Backend/User/adminLogin.jsp");
+            return;
+        }
+        
+        // Nếu đã đăng nhập Admin, tiếp tục xử lý
+        chain.doFilter(request, response);
+    }
+    
+    public void init(FilterConfig fConfig) throws ServletException { }
+    public void destroy() { }
+}

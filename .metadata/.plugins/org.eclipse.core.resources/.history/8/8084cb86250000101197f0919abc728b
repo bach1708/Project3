@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Sản Phẩm Văn Phòng Phẩm</title>
+    <!-- Liên kết file CSS suggestions.css -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Backend/css/suggestions.css">
+</head>
+<body style="background-color: #d3d3d3; font-family: Arial, sans-serif; margin: 0; padding: 20px;">
+    <%@ include file="../Layout/header.jsp" %>
+    <section>
+        <h2 style="text-align: center;">Danh Sách Sản Phẩm</h2>
+        <div class="suggestions">
+            <% 
+            SanPhamDAO dao = new SanPhamDAO();
+            List<SanPham> sanPhamList = dao.getAllSanPham();
+            if (sanPhamList != null && !sanPhamList.isEmpty()) {
+                for (SanPham sp : sanPhamList) {
+            %>
+            <div class="suggestion-item" 
+                 data-id="<%= sp.getSanPhamId() %>"
+                 data-title="<%= sp.getTenSanPham() %>"
+                 data-price="<%= sp.getGia() %>"
+                 data-quantity="<%= sp.getSoLuong() %>"
+                 data-category="<%= sp.getDanhMuc() %>"
+                 data-description="<%= sp.getMoTa() %>"
+                 data-image="${pageContext.request.contextPath}/images/<%= sp.getHinhAnh() %>">
+                <div class="hot-label">hot</div>
+                <div class="img-container">
+                    <img src="${pageContext.request.contextPath}/images/<%= sp.getHinhAnh() %>" alt="<%= sp.getTenSanPham() %>">
+                </div>
+                <div class="content-container">
+                    <h3><%= sp.getTenSanPham() %></h3>
+                    <p>Mã: <%= sp.getSanPhamId() %></p>
+                    <p>Giá: <%= sp.getGia() %> VND</p>
+                    <p>Số Lượng: <%= sp.getSoLuong() %> Cái</p>
+                    <p>Danh Mục: <%= sp.getDanhMuc() %></p>
+                    <p>Mô Tả: <%= sp.getMoTa() %></p>
+                    <a href="${pageContext.request.contextPath}/Frontend/MuaHang/sanphamDetail.jsp?id=<%= sp.getSanPhamId() %>">Mua ngay</a>
+                </div>
+            </div>
+            <% 
+                }
+            } else { 
+            %>
+                <p style="text-align: center; color: #999;">Không có sản phẩm nào để hiển thị.</p>
+            <% 
+            } 
+            %>
+        </div>
+    </section>
+    <%@ include file="../Layout/footer.jsp" %>
+    
+    <!-- JavaScript cho Modal hiển thị chi tiết (nếu cần) -->  
+    <script>
+        // Nếu bạn muốn khi click vào thẻ sản phẩm thì hiển thị modal chi tiết,
+        // bạn có thể thêm code JavaScript xử lý modal ở đây.
+        // Ví dụ, gán sự kiện click cho các .suggestion-item để hiển thị modal chứa thông tin chi tiết.
+    </script>
+</body>
+</html>

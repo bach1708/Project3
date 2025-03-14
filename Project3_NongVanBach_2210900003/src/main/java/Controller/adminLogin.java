@@ -18,10 +18,11 @@ public class adminLogin extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // Kết nối đến cơ sở dữ liệu
-    private Connection connect() throws SQLException {
+    private Connection connect() throws SQLException, ClassNotFoundException {
         String url = "jdbc:mysql://localhost:3306/k22cnt1_nongvanbach_2210900003_project3"; 
         String user = "root";
         String password = "";  
+        Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(url, user, password);
     }
 
@@ -30,21 +31,26 @@ public class adminLogin extends HttpServlet {
         String password = request.getParameter("password");
 
         // Kiểm tra đăng nhập với Admin
-        if (checkAdminLogin(username, password)) {
-            // Lưu thông tin người dùng vào session
-            request.getSession().setAttribute("username", username);
+        try {
+			if (checkAdminLogin(username, password)) {
+			    // Lưu thông tin người dùng vào session
+			    request.getSession().setAttribute("admin", username);
 
-            // Chuyển hướng đến trang chủ Admin
-            response.sendRedirect("/Project3_NongVanBach_2210900003/Backend/trangChu.jsp"); // Trang chủ của Admin
-        } else {
-            // Thông báo lỗi khi đăng nhập không thành công
-            request.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không chính xác");
-            request.getRequestDispatcher("/Backend/User/adminLogin.jsp").forward(request, response);
-        }
+			    // Chuyển hướng đến trang chủ Admin
+			    response.sendRedirect("/Project3_NongVanBach_2210900003/Backend/trangChu.jsp"); // Trang chủ của Admin
+			} else {
+			    // Thông báo lỗi khi đăng nhập không thành công
+			    request.setAttribute("errorMessage", "Tên người dùng hoặc mật khẩu không chính xác");
+			    request.getRequestDispatcher("/Backend/User/adminLogin.jsp").forward(request, response);
+			}
+		} catch (ClassNotFoundException | IOException | ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     // Kiểm tra đăng nhập Admin
-    private boolean checkAdminLogin(String username, String password) {
+    private boolean checkAdminLogin(String username, String password) throws ClassNotFoundException {
         String query = "SELECT * FROM NVB_ADMIN WHERE Nvb_TaiKhoan = ? AND Nvb_MatKhau = ?";
         try (Connection conn = connect(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, username);

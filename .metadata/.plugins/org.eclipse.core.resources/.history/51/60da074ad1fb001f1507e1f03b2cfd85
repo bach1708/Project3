@@ -1,0 +1,147 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(to bottom, #007bff, #ffffff);
+    color: black;
+    padding: 5px 0;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+section {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+section .left {
+    width: 25%;
+    text-align: justify;
+    padding-right: 20px;
+}
+
+section .right {
+    width: 40%;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+ul li strong {
+    color: #007bff;
+}
+
+img {
+    width: 100%; /* Đảm bảo ảnh chiếm 100% chiều rộng của container */
+    height: 100%; /* Đảm bảo ảnh phủ hết chiều cao container */
+    object-fit: cover; /* Đảm bảo ảnh phủ đầy khung mà không bị méo */
+    max-width: 100%; /* Giới hạn chiều rộng ảnh không vượt quá chiều rộng của container */
+    padding: 0;
+}
+
+.container-slideshow {
+    position: relative;
+    width: 50%;  /* Giữ nguyên chiều rộng khung */
+    height: 300px; /* Giữ chiều cao khung */
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding:0;
+}
+
+.container-slideshow div {
+    width: 20%; /* Đảm bảo 5 ảnh chia đều */
+    flex: 0 0 auto; /* Không co giãn */
+    padding: 0;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+    20% {
+        transform: translateX(0%);
+    }
+    25% {
+        transform: translateX(-20%);
+    }
+    40% {
+        transform: translateX(-20%);
+    }
+    45% {
+        transform: translateX(-40%);
+    }
+    60% {
+        transform: translateX(-40%);
+    }
+    65% {
+        transform: translateX(-60%);
+    }
+    80% {
+        transform: translateX(-60%);
+    }
+    85% {
+        transform: translateX(-80%);
+    }
+    100% {
+        transform: translateX(-80%);
+    }
+}
+
+.container-slideshow div img {
+    width: 100%; /* Đảm bảo ảnh chiếm 100% chiều rộng của mỗi div */
+    height: 100%;  /* Đảm bảo ảnh phủ hết chiều cao */
+    object-fit: fill; /* Đảm bảo ảnh phủ đầy khung */
+    object-position: center center; /* Đảm bảo ảnh căn giữa trong khung */
+    padding: 0; /* Bỏ padding */
+}
+
+/* Tối ưu hóa cho ảnh khi xem trên thiết bị di động */
+@media (max-width: 768px) {
+    .container-slideshow {
+        max-width: 100%;
+        height: 300px; /* Giảm chiều cao cho màn hình nhỏ */
+    }
+    .container-slideshow div {
+        width: 100%; /* Chỉ hiển thị một ảnh mỗi lần */
+    }
+}

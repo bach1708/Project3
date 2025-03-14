@@ -20,6 +20,9 @@
             <div style="text-align: center;">
                 <button type="submit" style="width: 100%; padding: 12px; background-color: #4CAF50; color: white; font-size: 16px; border: none; border-radius: 4px; cursor: pointer;">Đăng Nhập</button>
             </div>
+            <div style="text-align: center; margin-top: 20px;">
+            <a href="${pageContext.request.contextPath}/Backend/User/NVBDangKyUser.jsp" style="text-decoration: none; color: #007bff; font-size: 14px;">Đăng ký tài khoản</a>
+        </div>
         </form>
         <div style="text-align: center; margin-top: 15px;">
             <%= request.getAttribute("errorMessage") != null ? "<p style='color: red;'>" + request.getAttribute("errorMessage") + "</p>" : "" %>

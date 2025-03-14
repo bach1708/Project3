@@ -1,0 +1,35 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng ký thành viên</title>
+<link rel="stylesheet" href="/webapp/Backend/css/formdangky.css">
+
+</head>
+<body>
+    <h2>Đăng ký thành viên</h2>
+    
+    <form action="<%= request.getContextPath() %>/NVBDangKy" method="post">
+        <label for="taiKhoan">Tài khoản:</label>
+        <input type="text" name="taiKhoan" required><br>
+
+        <label for="hoTen">Họ tên:</label>
+        <input type="text" name="hoTen" required><br>
+
+        <label for="soDienThoai">Số điện thoại:</label>
+        <input type="text" name="soDienThoai" required><br>
+
+        <label for="diaChi">Địa chỉ:</label>
+        <textarea name="diaChi" required></textarea><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label for="matKhau">Mật khẩu:</label>
+        <input type="password" name="matKhau" required><br>
+
+        <button type="submit">Đăng ký</button>
+    </form>
+    <p>Nếu bạn đã có tài khoản, hãy <a href="userLogin.jsp">đăng nhập</a>.</p>
+</body>
+</html>

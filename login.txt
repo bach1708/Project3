@@ -5,3 +5,6 @@ pass : 123456
 user-Login:
 name : user
 pass : 123456
+
+
+trang chủ bắt đầu bằng "http://localhost:8080/Project3_NongVanBach_2210900003/Frontend/userLayout.jsp" đây là trang chủ chung của khách vãng lai và khách hàng có đăng ký tài khoản. Có thể xem sản phẩm ở trên thanh header bằng cách nhấn vào trên thanh hiển thị, ở trang sản phẩm có thể thêm vào giỏ hàng sau đó thanh toán. ở phần đăng nhập bắt đầu bằng trang đăng nhập khách hàng (userLogin.jsp) khi đăng nhập đúng chuyển về trang chủ và lưu thông tin người dùng bằng session, hiển thị tên người dùng và thay nút đăng nhập bằng đăng xuất. ở userLogin.jsp có 3 mục còn lại là đăng ký tài khoản (đăng ký tài khoản user), đăng nhập với tài khoản admin , quay lại trang chủ. Đăng ký tài khoản chuyển qua trang NVBDangKyUser.jsp người dùng cần nhập thông tin gồm Tài Khoản, Mật Khẩu, SDT, Địa Chỉ, Email, Họ Tên khách hàng. khi đăng ký thành công chuyển về trang đăng nhập người dùng. Đăng nhập với tài khoản admin khi nhấn chuyển sang adminLogin.jsp, khi đăng nhập đúng chuyển về trangChu.jsp. Admin có thể sửa xóa và update sản phẩm ở trong Danh Sách Sản Phẩm, có thể nhìn thấy danh sách thành viên đã đăng ký, có thể xem đơn hàng bằng Danh Sách Đơn Hàng. người dùng user hoặc người chưa đăng nhập không thể truy cập vào trang admin nếu không phải tài khoản admin khi đã chặn bằng fillter. 

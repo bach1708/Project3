@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh Toán Trả Trước</title>
+    <link rel="stylesheet" type="" href="<%= request.getContextPath() %>/css2/formthanhtoan.css">
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Thanh toán trả trước</h2>
+        <div class="payment-options">
+            <!-- Tùy chọn 1: Quét mã QR -->
+            <div class="payment-card">
+                <img src="<%= request.getContextPath() %>/images/qr-code.png" alt="Quét mã QR">
+                <h3>Quét mã QR</h3>
+                <p>Thanh toán nhanh qua QR Code</p>
+            </div>
+            <!-- Tùy chọn 2: Liên kết ngân hàng -->
+            <div class="payment-card">
+                <img src="<%= request.getContextPath() %>/images/bank-transfer.png" alt="Chuyển khoản ngân hàng">
+                <h3>Chuyển khoản ngân hàng</h3>
+                <p>Thanh toán qua chuyển khoản trực tuyến</p>
+            </div>
+        </div>
+        <!-- Liên kết cho phương thức trả sau -->
+        <a href="<%= request.getContextPath() %>/NVBThanhToanTraSau.jsp" class="pay-later">Thanh toán trả sau</a>
+    </div>
+</body>
+</html>

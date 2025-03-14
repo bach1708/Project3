@@ -1,0 +1,56 @@
+<%@ page import="java.util.List" %>
+<%@ page import="Model.NVBCartItem" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Giỏ hàng</title>
+<!-- chưa làm link css -->
+</head>
+<body>
+    <h2>Giỏ hàng của bạn</h2>
+    <%
+        List<NVBCartItem> gioHang = (List<NVBCartItem>) session.getAttribute("gioHang");
+        if(gioHang == null || gioHang.size() == 0) {
+    %>
+        <p>Giỏ hàng trống!</p>
+    <%
+        } else {
+    %>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+                <th>Xóa</th>
+            </tr>
+            <%
+                int tongThanhToan = 0;
+                for(NVBCartItem item : gioHang) {
+                    int tongTien = item.getTongTien();
+                    tongThanhToan += tongTien;
+            %>
+            <tr>
+                <td><%= item.getTenSanPham() %></td>
+                <td><%= item.getGia() %> VNĐ</td>
+                <td><%= item.getSoLuong() %></td>
+                <td><%= tongTien %> VNĐ</td>
+                <td>
+                    <a href="<%= request.getContextPath() %>/NVBGioHang?action=remove&id=<%= item.getSanPhamId() %>">Xóa</a>
+                </td>
+            </tr>
+            <%
+                }
+            %>
+            <tr>
+                <td colspan="3" align="right">Tổng thanh toán:</td>
+                <td colspan="2"><%= tongThanhToan %> VNĐ</td>
+            </tr>
+        </table>
+    <%
+        }
+    %>
+    <p><a href="<%= request.getContextPath() %>/sanpham">Tiếp tục mua hàng</a></p>
+</body>
+</html>

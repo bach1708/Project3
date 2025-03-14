@@ -1,0 +1,97 @@
+package Controller;
+
+import java.io.IOException;
+import java.sql.*;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+import Model.NVBCartItem;
+
+@WebServlet("/NVBThanhToan")
+public class NVBThanhToan extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    
+    // Phương thức kết nối đến CSDL MySQL
+    private Connection connect() throws SQLException, ClassNotFoundException {
+        String url = "jdbc:mysql://localhost:3306/k22cnt1_nongvanbach_2210900003_project3?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+        String user = "root";
+        String password = "";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(url, user, password);
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Lấy thông tin khách hàng từ form thanh toán trả sau
+        String hoTen = request.getParameter("hoTen");
+        String soDienThoai = request.getParameter("soDienThoai");
+        String diaChi = request.getParameter("diaChi");
+        
+        // Lấy giỏ hàng từ session (giả sử giỏ hàng được lưu dưới dạng List<NVBCartItem>)
+        HttpSession session = request.getSession();
+        List<NVBCartItem> gioHang = (List<NVBCartItem>) session.getAttribute("gioHang");
+        if (gioHang == null || gioHang.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/Frontend/userLayout.jsp");
+            return;
+        }
+        
+        // Tính tổng tiền của đơn hàng
+        int tongTien = 0;
+        for (NVBCartItem item : gioHang) {
+            tongTien += item.getTongTien();
+        }
+        
+        // Giả sử trong trường hợp thanh toán trả sau, không liên kết trực tiếp với bảng khách hàng
+        // nên cả Nvb_KhachHangId và Nvb_KhachVangLaiId đều được để NULL.
+        Integer khachHangId = null;
+        Integer khachVangLaiId = null;
+        int trangThai = 1; // 1: Đang xử lý
+        
+        Connection conn = null;
+        try {
+            conn = connect();
+            conn.setAutoCommit(false);
+            
+            // Lưu đơn hàng vào bảng NVB_DONHANG
+            String insertOrder = "INSERT INTO NVB_DONHANG (Nvb_KhachHangId, Nvb_KhachVangLaiId, Nvb_TongTien, Nvb_TrangThai) VALUES (?, ?, ?, ?)";
+            int donHangId = -1;
+            try (PreparedStatement stmt = conn.prepareStatement(insertOrder, Statement.RETURN_GENERATED_KEYS)) {
+                if (khachHangId != null) {
+                    stmt.setInt(1, khachHangId);
+                } else {
+                    stmt.setNull(1, Types.INTEGER);
+                }
+                if (khachVangLaiId != null) {
+                    stmt.setInt(2, khachVangLaiId);
+                } else {
+                    stmt.setNull(2, Types.INTEGER);
+                }
+                stmt.setInt(3, tongTien);
+                stmt.setInt(4, trangThai);
+                
+                int rows = stmt.executeUpdate();
+                if (rows > 0) {
+                    try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            donHangId = generatedKeys.getInt(1);
+                        }
+                    }
+                }
+            }
+            
+            // Lưu chi tiết đơn hàng cho mỗi sản phẩm trong giỏ vào bảng NVB_CHITIETDONHANG
+            if (donHangId != -1) {
+                String insertDetail = "INSERT INTO NVB_CHITIETDONHANG (Nvb_DonHangId, Nvb_SanPhamId, Nvb_SoLuong, Nvb_GiaSanPham, Nvb_ThanhToan) VALUES (?, ?, ?, ?, ?)";
+                try (PreparedStatement stmtDetail = conn.prepareStatement(insertDetail)) {
+                    for (NVBCartItem item : gioHang) {
+                        stmtDetail.setInt(1, donHangId);
+                        stmtDetail.setInt(2, item.getSanPhamId());
+                        stmtDetail.setInt(3, item.getSoLuong());
+                        stmtDetail.setInt(4, item.getGia());
+                        stmtDetail.setInt(5, 0);  // 0: Thanh toán sau (chưa thanh toán)\n                        stmtDetail.addBatch();\n                    }\n                    stmtDetail.executeBatch();\n                }\n            }\n            conn.commit();\n            // Xóa giỏ hàng khỏi session\n            session.removeAttribute(\"gioHang\");\n        } catch (SQLException | ClassNotFoundException e) {\n            e.printStackTrace();\n            if (conn != null) {\n                try { conn.rollback(); } catch(SQLException ex) { ex.printStackTrace(); }\n            }\n        } finally {\n            if (conn != null) {\n                try { conn.close(); } catch(SQLException e) { e.printStackTrace(); }\n            }\n        }\n        // Chuyển hướng về trang chủ của User sau khi thanh toán thành công\n        response.sendRedirect(request.getContextPath() + \"/Frontend/userLayout.jsp\");\n    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
+}

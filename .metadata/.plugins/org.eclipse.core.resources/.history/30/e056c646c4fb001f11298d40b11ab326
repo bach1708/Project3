@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(to bottom, #007bff, #ffffff);
+    color: black;
+    padding: 5px 0;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+section {
+    width: 100%; /* Đảm bảo section chiếm toàn bộ chiều rộng */
+    margin: 0; /* Loại bỏ margin */
+    padding: 0; /* Loại bỏ padding */
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-slideshow {
+    position: relative;
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    height: 100vh; /* Chiều cao bằng chiều cao màn hình */
+    margin: 0; /* Loại bỏ margin */
+    padding: 0; /* Loại bỏ padding */
+    overflow: hidden; /* Đảm bảo ảnh không bị tràn ra ngoài */
+}
+
+.container-slideshow div {
+    width: 100%; /* Mỗi ảnh chiếm toàn bộ chiều rộng */
+    flex: 0 0 auto; /* Không co giãn */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+    20% {
+        transform: translateX(0%);
+    }
+    25% {
+        transform: translateX(-100%);
+    }
+    40% {
+        transform: translateX(-100%);
+    }
+    45% {
+        transform: translateX(-200%);
+    }
+    60% {
+        transform: translateX(-200%);
+    }
+    65% {
+        transform: translateX(-300%);
+    }
+    80% {
+        transform: translateX(-300%);
+    }
+    85% {
+        transform: translateX(-400%);
+    }
+    100% {
+        transform: translateX(-400%);
+    }
+}
+
+.container-slideshow div img {
+    width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của mỗi div */
+    height: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều cao của container */
+    object-fit: cover; /* Đảm bảo ảnh phủ đầy khung mà không bị méo */
+    display: block; /* Loại bỏ khoảng trắng dưới ảnh */
+}
+
+/* Tối ưu hóa cho ảnh khi xem trên thiết bị di động */
+@media (max-width: 768px) {
+    .container-slideshow {
+        height: 100vh; /* Giữ chiều cao full màn hình trên các thiết bị nhỏ */
+    }
+    .container-slideshow div {
+        width: 100%; /* Chỉ hiển thị một ảnh mỗi lần */
+    }
+}
