@@ -1,0 +1,55 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="DAO.SanPhamDAO" %>
+<%@ page import="Model.SanPham" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Sản Phẩm Văn Phòng Phẩm</title>
+</head>
+
+<%@ include file="../Layout2/header2.jsp" %>
+    <section>
+        <h2>Danh Sách Sản Phẩm</h2>
+        <div >
+            <% 
+            SanPhamDAO dao = new SanPhamDAO();
+            List<SanPham> sanPhamList = dao.getAllSanPham();  // Lấy tất cả sản phẩm từ DB
+            
+            if (sanPhamList != null && !sanPhamList.isEmpty()) {
+                for (SanPham sp : sanPhamList) {
+            %>
+                <div >
+                    <!-- Hiển thị hình ảnh sản phẩm -->
+                   <img src="${pageContext.request.contextPath}/images/<%= sp.getHinhAnh() %>" alt="<%= sp.getTenSanPham() %>">
+                    <h3 style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;"><%= sp.getTenSanPham() %></h3>
+                    <p>Mã: <%= sp.getSanPhamId() %></p>
+                    <p>Giá: <%= sp.getGia() %> VND</p>
+                    <p>Số Lượng Còn: <%= sp.getSoLuong() %> Cái</p>
+                    <p>Danh Mục: <%= sp.getDanhMuc() %></p>
+                    <p>Mô Tả: <%= sp.getMoTa() %></p>
+                    <div>
+					    <a href="<%= request.getContextPath() %>/NVBGioHang?action=add&id=<%= sp.getSanPhamId() %>&soLuong=1" >
+					       
+					        Thêm vào giỏ
+					    </a>
+					</div>
+                </div>
+            <% 
+                }
+            } else { 
+            %>
+                <p >Không có sản phẩm nào để hiển thị.</p>
+            <% 
+            } 
+            %>
+        </div>
+        <br>	
+        <div >
+            <a href="${pageContext.request.contextPath}/Backend/trangChu.jsp" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay lại trang chủ</a>
+        </div>
+    </section>
+    <%@ include file="../Layout2/footer2.jsp" %>    
+</body>
+</html>

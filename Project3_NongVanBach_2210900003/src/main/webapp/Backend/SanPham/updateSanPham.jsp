@@ -4,41 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Cập Nhật Sản Phẩm</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Backend/SanPham/cssUpdateSanPham.css">
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
-<%@ include file="../Layout/header.jsp" %>
+<body>
 
-    <section style="max-width: 600px; width: 100%; padding: 20px; margin: 20px auto; border: 1px solid #ddd; border-radius: 8px; background-color: #fff;">
-        <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Cập Nhật Sản Phẩm</h2>
+<div class="body">
+    <section class="form-container">
+        <h2>Cập Nhật Sản Phẩm</h2>
         
-        <form action="${pageContext.request.contextPath}/Backend/SanPham/updateSanPham" method="post" style="max-width: 100%; display: block;">
+        <form action="${pageContext.request.contextPath}/Backend/SanPham/updateSanPham" method="post">
             <input type="hidden" name="sanPhamId" value="${sanPham.sanPhamId}">
 
-            <!-- Tên Sản Phẩm -->
-            <label for="tenSanPham" style="font-weight: bold; display: block; margin: 10px 0 5px;">Tên Sản Phẩm:</label>
-            <input type="text" id="tenSanPham" name="tenSanPham" value="${sanPham.tenSanPham}" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+            <label for="tenSanPham">Tên Sản Phẩm:</label>
+            <input type="text" id="tenSanPham" name="tenSanPham" value="${sanPham.tenSanPham}" required>
 
-            <!-- Mô Tả -->
-            <label for="moTa" style="font-weight: bold; display: block; margin: 10px 0 5px;">Mô Tả:</label>
-            <textarea id="moTa" name="moTa" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; height: 100px; resize: none;">${sanPham.moTa}</textarea>
+            <label for="moTa">Mô Tả:</label>
+            <textarea id="moTa" name="moTa" required>${sanPham.moTa}</textarea>
 
-            <!-- Hình Ảnh -->
-            <label for="hinhAnh" style="font-weight: bold; display: block; margin: 10px 0 5px;">Hình Ảnh (Tên hình ảnh):</label>
-            <input type="text" id="hinhAnh" name="hinhAnh" value="${sanPham.hinhAnh}" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+            <label for="hinhAnh">Hình Ảnh (Tên hình ảnh):</label>
+            <input type="text" id="hinhAnh" name="hinhAnh" value="${sanPham.hinhAnh}" required>
 
-            <!-- Giá -->
-            <label for="gia" style="font-weight: bold; display: block; margin: 10px 0 5px;">Giá (VND):</label>
-            <input type="number" id="gia" name="gia" value="${sanPham.gia}" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+            <label for="gia">Giá (VND):</label>
+            <input type="number" id="gia" name="gia" value="${sanPham.gia}" required>
 
-            <!-- Số Lượng -->
-            <label for="soLuong" style="font-weight: bold; display: block; margin: 10px 0 5px;">Số Lượng:</label>
-            <input type="number" id="soLuong" name="soLuong" value="${sanPham.soLuong}" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+            <label for="soLuong">Số Lượng:</label>
+            <input type="number" id="soLuong" name="soLuong" value="${sanPham.soLuong}" required>
 
-            <!-- Danh Mục -->
-            <label for="danhMuc" style="font-weight: bold; display: block; margin: 10px 0 5px;">Danh Mục:</label>
-            <input type="text" id="danhMuc" name="danhMuc" value="${sanPham.danhMuc}" required style="width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+            <label for="danhMuc">Danh Mục:</label>
+            <input type="text" id="danhMuc" name="danhMuc" value="${sanPham.danhMuc}" required>
 
-            <!-- Nút Cập Nhật -->
             <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;">
                 Cập Nhật
             </button>
@@ -49,8 +43,9 @@
             </a>
         </form>
     </section>
-
+</div>
 <%@ include file="../Layout/footer.jsp" %>
-
 </body>
 </html>
+
+

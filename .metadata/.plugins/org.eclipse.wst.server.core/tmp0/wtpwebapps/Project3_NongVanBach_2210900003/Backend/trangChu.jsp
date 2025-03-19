@@ -14,9 +14,10 @@
 <%@ include file="Layout/header.jsp" %>
 </div>
     
-
-    <!-- Header -->
-    <header>
+<div class="body">
+    <!-- Header -->   
+    <header >
+     <h1>-------------------</h1>
         <h1>🖊 Cửa Hàng Văn Phòng Phẩm Nhà Bách</h1>
         <p>Chất lượng - Tiện lợi - Giá tốt</p>
     </header>
@@ -89,7 +90,7 @@
 		    </div>
         </div>
     </section>
-
+</div>
     <%@ include file="Layout/footer.jsp" %>
 </body>
 </html>

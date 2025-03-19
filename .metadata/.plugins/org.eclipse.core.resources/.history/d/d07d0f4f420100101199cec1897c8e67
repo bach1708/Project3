@@ -1,0 +1,58 @@
+package Controller;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Model.SanPham;
+
+/**
+ * Servlet implementation class NVBSearch
+ */
+@WebServlet("/NVBSearch")
+public class NVBSearch extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+	    private SanPhamDAO sanPhamDAO = new SanPhamDAO();
+
+	    public List<SanPham> searchSanPhamByName(String keyword) {
+	        List<SanPham> sanPhamList = new ArrayList<>();
+	        String query = "SELECT * FROM NVB_SANPHAM WHERE Nvb_TenSanPham LIKE ?";
+
+	        try (Connection conn = sanPhamDAO.connect(); PreparedStatement stmt = conn.prepareStatement(query)) {
+	            stmt.setString(1, "%" + keyword + "%"); // Tìm kiếm theo tên gần đúng
+	            try (ResultSet rs = stmt.executeQuery()) {
+	                while (rs.next()) {
+	                    SanPham sp = new SanPham();
+	                    sp.setSanPhamId(rs.getInt("Nvb_SanPhamId"));
+	                    sp.setTenSanPham(rs.getString("Nvb_TenSanPham"));
+	                    sp.setMoTa(rs.getString("Nvb_MoTa"));
+	                    sp.setHinhAnh(rs.getString("Nvb_HinhAnh"));
+	                    sp.setGia(rs.getInt("Nvb_Gia"));
+	                    sp.setSoLuong(rs.getInt("Nvb_SoLuong"));
+	                    sp.setDanhMuc(rs.getString("Nvb_DanhMuc"));
+
+	                    sanPhamList.add(sp);
+	                }
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return sanPhamList;
+	    }
+	
+
+}

@@ -1,0 +1,85 @@
+/* Form thanh toán */
+.payment-form-container {
+    display: none;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    max-width: 450px;
+    margin: 30px auto;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Tiêu đề của form */
+.payment-form-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 18px;
+}
+
+/* Input & Textarea */
+.payment-form-container input,
+.payment-form-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* Khi nhập vào ô input */
+.payment-form-container input:focus, 
+.payment-form-container textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+/* Fieldset cho phương thức thanh toán */
+.payment-options-fieldset {
+    border: none;
+    text-align: left;
+    margin: 15px 0;
+    padding: 10px;
+}
+
+/* Các tùy chọn thanh toán */
+.payment-option {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+/* Radio button tùy chỉnh */
+.payment-option input[type="radio"] {
+    accent-color: #007bff;
+    transform: scale(1.2);
+    margin-right: 8px;
+}
+
+/* Nút thanh toán */
+.pay-btn {
+    background-color: #ff5722;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+/* Hiệu ứng hover cho nút */
+.pay-btn:hover {
+    background-color: #e64a19;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}

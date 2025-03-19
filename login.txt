@@ -1,10 +1,52 @@
-admin-Login:
-name : admin
-pass : 123456
+Tên dự án: Project 3 – Đề Tài: Tìm hiểu bài toán quản lý cho cửa hàng văn phòng phẩm
 
-user-Login:
-name : user
-pass : 123456
+I. Công nghệ sử dụng:
+  - Ngôn ngữ lập trình: Java (JSP, Servlet)
+  - Cơ sở dữ liệu: MySQL
+  - IDE: Eclipse
+  - Web Server: Apache Tomcat
+  - Thư viện giao diện: Bootstrap, Font Awesome
+
+
+II. HƯỚNG DẪN CÀI ĐẶT VÀ SỬ DỤNG
+
+1. Cài đặt Eclipse IDE
+Bước 1: Truy cập trang chủ của Eclipse: https://www.eclipse.org/downloads/.
+Bước 2: Tải về phiên bản Eclipse IDE for Enterprise Java and Web Developers (hoặc phiên bản phù hợp với nhu cầu của bạn).
+Bước 3: Giải nén file tải về và chạy file eclipse.exe (trên Windows) hoặc ứng dụng tương ứng trên hệ điều hành khác.
+Bước 4: Khi khởi động, chọn thư mục workspace chứa dự án của bạn.
+Bước 5: Import Project của bạn vào Eclipse:
+Vào menu File > Import > Existing Projects into Workspace.
+Chọn thư mục chứa project của bạn, nhấn Finish.
+
+2. Cài đặt MySQL
+Bước 1: Truy cập trang chủ MySQL: https://dev.mysql.com/downloads/mysql/.
+Bước 2: Tải phiên bản MySQL Community Server phù hợp với hệ điều hành của bạn.
+Bước 3: Cài đặt MySQL theo hướng dẫn. Trong quá trình cài đặt, hãy nhớ:
+Ghi lại username (thường là "root") và password mà bạn đã cài đặt.
+Cấu hình port (thường là 3306).
+Bước 4: Sử dụng MySQL Workbench (hoặc công cụ quản lý khác) để tạo database dự án với tên: Project3_NongVanBach_2210900003
+
+3. Cấu hình và chạy ứng dụng web
+Bước 1: Trong Eclipse, đảm bảo project của bạn đã được cấu hình đúng để chạy trên Apache Tomcat.
+Cài đặt Tomcat nếu chưa có. Tải Tomcat từ https://tomcat.apache.org/ và cấu hình trong Eclipse (Window > Preferences > Server > Runtime Environments).
+Bước 2: Kiểm tra file cấu hình kết nối CSDL trong project (trong lớp DAO, giá trị URL, username, password đã đúng chưa).
+Bước 3: Chạy ứng dụng:
+Nhấn chuột phải vào project → Run As > Run on Server.
+Ứng dụng sẽ được triển khai trên Tomcat và mở trình duyệt hiển thị trang chủ.
+Bước 4: Truy cập giao diện của ứng dụng:
+Giao diện quản trị viên (Admin): Đăng nhập qua trang Admin (ví dụ: /Backend/User/adminLogin.jsp).
+Giao diện người dùng (User): Trang chủ user hiển thị sản phẩm, giỏ hàng, thanh toán (ví dụ: /Frontend/userLayout.jsp).
+
+4. Hướng dẫn đăng nhập quản trị
+
+Tài khoản quản trị:
+Tài khoản: admin 
+Mật khẩu: 123456 
+
+Tài khoản khách hàng:
+Tài khoản: user
+Mật khẩu: 123456
 
 
 trang chủ bắt đầu bằng "http://localhost:8080/Project3_NongVanBach_2210900003/Frontend/userLayout.jsp" đây là trang chủ chung của khách vãng lai và khách hàng có đăng ký tài khoản. Có thể xem sản phẩm ở trên thanh header bằng cách nhấn vào trên thanh hiển thị, ở trang sản phẩm có thể thêm vào giỏ hàng sau đó thanh toán. ở phần đăng nhập bắt đầu bằng trang đăng nhập khách hàng (userLogin.jsp) khi đăng nhập đúng chuyển về trang chủ và lưu thông tin người dùng bằng session, hiển thị tên người dùng và thay nút đăng nhập bằng đăng xuất. ở userLogin.jsp có 3 mục còn lại là đăng ký tài khoản (đăng ký tài khoản user), đăng nhập với tài khoản admin , quay lại trang chủ. Đăng ký tài khoản chuyển qua trang NVBDangKyUser.jsp người dùng cần nhập thông tin gồm Tài Khoản, Mật Khẩu, SDT, Địa Chỉ, Email, Họ Tên khách hàng. khi đăng ký thành công chuyển về trang đăng nhập người dùng. Đăng nhập với tài khoản admin khi nhấn chuyển sang adminLogin.jsp, khi đăng nhập đúng chuyển về trangChu.jsp. Admin có thể sửa xóa và update sản phẩm ở trong Danh Sách Sản Phẩm, có thể nhìn thấy danh sách thành viên đã đăng ký, có thể xem đơn hàng bằng Danh Sách Đơn Hàng. người dùng user hoặc người chưa đăng nhập không thể truy cập vào trang admin nếu không phải tài khoản admin khi đã chặn bằng fillter. 

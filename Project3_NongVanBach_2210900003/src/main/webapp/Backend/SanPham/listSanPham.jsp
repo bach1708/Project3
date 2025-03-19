@@ -7,50 +7,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Danh Sách Sản Phẩm Văn Phòng Phẩm</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Frontend/MuaHang/cssListSanPham.css">
 </head>
-<body style="background-color: #d3d3d3; font-family: Arial, sans-serif; margin: 0; padding: 20px;">
-<%@ include file="../Layout/header.jsp" %>
+<body>
+<div class="top-nav">
+    <%@ include file="../Layout/header.jsp" %>
+</div>
+<div class="body">
     <section>
-        <h2 style="text-align: center;">Danh Sách Sản Phẩm</h2>
-        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 20px;">
+    <div class="h2" style=padding-top:70px;><h2>Danh Sách Sản Phẩm</h2></div>
+    
+        
+        <div class="product-container">
             <% 
-            // Đảm bảo sử dụng đúng DAO để kết nối với cơ sở dữ liệu của bạn
             SanPhamDAO dao = new SanPhamDAO();
-            List<SanPham> sanPhamList = dao.getAllSanPham();  // Lấy tất cả sản phẩm từ DB
+            List<SanPham> sanPhamList = dao.getAllSanPham();
             
             if (sanPhamList != null && !sanPhamList.isEmpty()) {
                 for (SanPham sp : sanPhamList) {
             %>
-                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: space-between;">
-                    <!-- Hiển thị hình ảnh sản phẩm -->
-                   <img src="${pageContext.request.contextPath}/images/<%= sp.getHinhAnh() %>" alt="<%= sp.getTenSanPham() %>" style="width: 100%; height: auto; border-radius: 5px; margin-bottom: 10px;">
-                    <h3 style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 10px;"><%= sp.getTenSanPham() %></h3>
-                    <p style="font-size: 14px; color: #666; margin: 5px 0;">Mã: <%= sp.getSanPhamId() %></p>
-                    <p style="font-size: 14px; color: #666; margin: 5px 0;">Giá: <%= sp.getGia() %> VND</p>
-                    <p style="font-size: 14px; color: #666; margin: 5px 0;">Số Lượng Còn: <%= sp.getSoLuong() %> Cái</p>
-                    <p style="font-size: 14px; color: #666; margin: 5px 0;">Danh Mục: <%= sp.getDanhMuc() %></p>
-                    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
-                        <a href="updateSanPham?sanPhamId=<%= sp.getSanPhamId() %>" style="text-decoration: none; padding: 8px 12px; background-color: #007bff; color: white; border-radius: 4px; transition: background-color 0.3s ease;">Sửa</a>
-                        <a href="deleteSanPham?sanPhamId=<%= sp.getSanPhamId() %>" style="text-decoration: none; padding: 8px 12px; background-color: #dc3545; color: white; border-radius: 4px; transition: background-color 0.3s ease;" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                <div class="product-card">
+                    <img src="${pageContext.request.contextPath}/images/<%= sp.getHinhAnh() %>" alt="<%= sp.getTenSanPham() %>">
+                    <h3 class="product-title"><%= sp.getTenSanPham() %></h3>
+                    <p class="product-info">Mã: <%= sp.getSanPhamId() %></p>
+                    <p class="product-info">Giá: <%= sp.getGia() %> VND</p>
+                    <p class="product-info">Số Lượng Còn: <%= sp.getSoLuong() %> Cái</p>
+                    <p class="product-info">Danh Mục: <%= sp.getDanhMuc() %></p>
+                    <p class="product-info">Mô Tả: <%= sp.getMoTa() %> </p>
+                    <div class="button-group">
+                        <a href="updateSanPham?sanPhamId=<%= sp.getSanPhamId() %>" class="btn-edit">Sửa</a>
+                        <a href="deleteSanPham?sanPhamId=<%= sp.getSanPhamId() %>" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
                     </div>
                 </div>
             <% 
                 }
             } else { 
             %>
-                <p style="text-align: center; color: #999;">Không có sản phẩm nào để hiển thị.</p>
-            <% 
-            } 
-            %>
+                <p>Không có sản phẩm nào để hiển thị.</p>
+            <% } %>
         </div>
         <br>
-        <div style="text-align: center;">
-            <a href="addSanPham.jsp" style="text-decoration: none; padding: 10px 20px; background-color: #28a745; color: white; border-radius: 5px; font-size: 16px;">Thêm Sản Phẩm</a>
-        </div>
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="${pageContext.request.contextPath}/Backend/trangChu.jsp" style="text-decoration: none; padding: 10px 20px; background-color: #6c757d; color: white; border-radius: 5px;">Quay lại trang chủ</a>
+        <div class="button-group">
+            <a href="addSanPham.jsp" class="btn-add">Thêm Sản Phẩm</a>
+            <a href="${pageContext.request.contextPath}/Backend/trangChu.jsp" class="btn-back">Quay lại trang chủ</a>
         </div>
     </section>
-    <%@ include file="../Layout/footer.jsp" %>    
+</div>
+<%@ include file="../Layout/footer.jsp" %>    
 </body>
 </html>

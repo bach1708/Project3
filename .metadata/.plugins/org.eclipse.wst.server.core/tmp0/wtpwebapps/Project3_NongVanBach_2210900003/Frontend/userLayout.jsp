@@ -7,14 +7,16 @@
     <title>Cửa Hàng Văn Phòng Phẩm Online</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Frontend/css2/formuser.css">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<style>
-</style>
+
 </head>
 <body>
+<div class="top-nav">
     <%@ include file="Layout2/header2.jsp" %>
-
-    <!-- Header -->
-    <header>
+   </div>
+<div class="body">
+    <!-- Header -->   
+    <header >
+     <h1>-------------------</h1>
         <h1>🖊 Cửa Hàng Văn Phòng Phẩm Nhà Bách</h1>
         <p>Chất lượng - Tiện lợi - Giá tốt</p>
     </header>
@@ -36,11 +38,11 @@
                 Chào mừng bạn đến với <strong>Văn Phòng Phẩm Online</strong> - địa chỉ đáng tin cậy chuyên cung cấp đa dạng các sản phẩm văn phòng phẩm với chất lượng cao, đáp ứng mọi nhu cầu từ học tập đến công việc văn phòng.
             </p>
             <p>
-                Chúng tôi cam kết mang đến những sản phẩm tốt nhất với giá cả hợp lý, hỗ trợ tối đa cho cá nhân, doanh nghiệp và trường học trong việc sử dụng các dụng cụ văn phòng thiết yếu.
+                Chúng tôi cam kết mang đến những sản phẩm tốt nhất với **giá cả hợp lý**, hỗ trợ tối đa cho cá nhân, doanh nghiệp và trường học trong việc sử dụng các dụng cụ văn phòng thiết yếu.
                 Với phương châm <strong>"Chất lượng - Tiện lợi - Giá tốt"</strong>, cửa hàng chúng tôi không ngừng đổi mới, cập nhật các sản phẩm mới nhất để đáp ứng xu hướng tiêu dùng hiện đại.
             </p>
             <p>
-                Với hơn 5 năm kinh nghiệm, chúng tôi tự hào là nhà cung cấp sỉ và lẻ các sản phẩm văn phòng phẩm chất lượng cao, phục vụ hàng nghìn khách hàng trên toàn quốc.
+                Với hơn **5 năm kinh nghiệm**, chúng tôi tự hào là nhà cung cấp **sỉ và lẻ** các sản phẩm văn phòng phẩm chất lượng cao, phục vụ hàng nghìn khách hàng trên toàn quốc.
             </p>
             <p><strong>Chúng tôi cung cấp:</strong></p>
             <ul>
@@ -52,42 +54,42 @@
                 <li>📂 <strong>Đồ dùng văn phòng:</strong> Máy tính cầm tay, bấm kim, bảng ghi chú, sticker văn phòng.</li>
             </ul>
             <p>
-                Bên cạnh đó, chúng tôi luôn có chính sách ưu đãi đặc biệt cho khách hàng đặt hàng số lượng lớn, hỗ trợ giao hàng nhanh chóng, tiện lợi.
-                Nếu bạn đang tìm kiếm một địa chỉ mua sắm văn phòng phẩm uy tín, hãy để Văn Phòng Phẩm Online đồng hành cùng bạn!
+                Bên cạnh đó, chúng tôi luôn có **chính sách ưu đãi đặc biệt** cho khách hàng đặt hàng số lượng lớn, hỗ trợ giao hàng nhanh chóng, tiện lợi.
+                Nếu bạn đang tìm kiếm một địa chỉ mua sắm văn phòng phẩm uy tín, hãy để **Văn Phòng Phẩm Online** đồng hành cùng bạn!
             </p>
         </div>
 
+
         <div class="right">
-    <h3>Có thể bạn sẽ thích</h3>
+            <h3>Có thể bạn sẽ thích</h3>
     
-    <div class="suggestions">
-        <div class="suggestion-item">
-        <div class="hot-label">hot</div>
-            <a href="${pageContext.request.contextPath}/Frontend/MuaHang/NVBListSanPham.jsp">
-                <img src="${pageContext.request.contextPath}/images/butbi.jpg" alt="Sản phẩm Hot 1">
-                <p>Mua ngay</p>
-            </a>
+		    <div class="suggestions">
+		        <div class="suggestion-item">
+		        <div class="hot-label">hot</div>
+		            <a href="${pageContext.request.contextPath}/Frontend/MuaHang/NVBListSanPham.jsp">
+		                <img src="${pageContext.request.contextPath}/images/butbi.jpg" alt="Sản phẩm Hot 1">
+		                <p>Mua ngay</p>
+		            </a>
+		        </div>
+		        <div class="suggestion-item">
+		        <div class="hot-label">hot</div>
+		            <a href="${pageContext.request.contextPath}/Frontend/MuaHang/NVBListSanPham.jsp">
+		                <img src="${pageContext.request.contextPath}/images/bangtrang.jpg" alt="Sản phẩm Hot 1">
+		                <p>Mua ngay</p>
+		            </a>
+		        </div>
+		       <div class="suggestion-item">
+		        <div class="hot-label">hot</div>
+		            <a href="${pageContext.request.contextPath}/Frontend/MuaHang/NVBListSanPham.jsp">
+		                <img src="${pageContext.request.contextPath}/images/sotay.jpg" alt="Sản phẩm Hot 1">
+		                <p>Mua ngay</p>
+		            </a>
+		        </div>
+		        
+		    </div>
         </div>
-        <div class="suggestion-item">
-        <div class="hot-label">hot</div>
-            <a href="${pageContext.request.contextPath}/Frontend/MuaHang/NVBListSanPham.jsp">
-                <img src="${pageContext.request.contextPath}/images/bangtrang.jpg" alt="Sản phẩm Hot 1">
-                <p>Mua ngay</p>
-            </a>
-        </div>
-       <div class="suggestion-item">
-        <div class="hot-label">hot</div>
-            <a href="${pageContext.request.contextPath}/Frontend/MuaHang/NVBListSanPham.jsp">
-                <img src="${pageContext.request.contextPath}/images/sotay.jpg" alt="Sản phẩm Hot 1">
-                <p>Mua ngay</p>
-            </a>
-        </div>
-        
-    </div>
-</div>
-
     </section>
-
+</div>
     <%@ include file="Layout2/footer2.jsp" %>
 </body>
 </html>

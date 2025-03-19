@@ -6,94 +6,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Giỏ hàng</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fc;
-            padding: 20px;
-            text-align: center;
-        }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background: white;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
-        .buttons a, .buttons button {
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin: 5px;
-            display: inline-block;
-        }
-        .continue-btn { background-color: #28a745; }
-        .pay-btn { background-color: #007bff; }
-        .payment-form-container {
-            max-width: 500px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 30px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            display: none; /* Ẩn ban đầu */
-        }
-        .payment-form-container h2 {
-            text-align: center;
-            color: #333;
-        }
-        .payment-form-container label {
-            display: block;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 5px;
-        }
-        .payment-form-container input,
-        .payment-form-container textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-        .payment-form-container button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .payment-form-container button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Frontend/MuaHang/cssGioHang.css">
     <script>
         function togglePaymentForm() {
             var formDiv = document.getElementById('paymentForm');
             formDiv.style.display = formDiv.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        function confirmPayment() {
+            alert('Thanh toán thành công, đơn hàng sẽ giao tới bạn sau vài ngày!');
+            return true; 
         }
     </script>
 </head>
@@ -110,6 +32,7 @@
         <table cellpadding="10" cellspacing="0">
             <tr>
                 <th>Tên sản phẩm</th>
+                <th>Hình Ảnh</th>
                 <th>Giá</th>
                 <th>Số lượng</th>
                 <th>Tổng tiền</th>
@@ -123,6 +46,11 @@
             %>
             <tr>
                 <td><%= item.getTenSanPham() %></td>
+                <td>
+                    <img src="<%= request.getContextPath() %>/images/<%= item.getHinhAnh() %>" 
+                         alt="<%= item.getTenSanPham() %>" 
+                         style="width: 80px; height: auto; border-radius: 5px;">
+                </td>
                 <td><%= item.getGia() %> VND</td>
                 <td><%= item.getSoLuong() %></td>
                 <td><%= tongTien %> VND</td>
@@ -143,8 +71,8 @@
         <a href="<%= request.getContextPath() %>/Frontend/MuaHang/NVBListSanPham.jsp" class="continue-btn">Tiếp tục mua hàng</a>
         <button type="button" class="pay-btn" onclick="togglePaymentForm()">Thanh toán</button>
     </div>
-    
-    <!-- Form thanh toán ẩn ban đầu --> 
+
+    <!-- Form thanh toán -->
     <div id="paymentForm" class="payment-form-container">
         <h2>Thanh Toán</h2>
         <form action="<%= request.getContextPath() %>/NVBThanhToan" method="POST">
@@ -156,20 +84,21 @@
             
             <label for="diaChi">Địa Chỉ:</label>
             <textarea id="diaChi" name="diaChi" placeholder="Nhập địa chỉ của bạn" required></textarea>
-             <!-- Lựa chọn thanh toán --> 
-        <fieldset class="payment-options-fieldset">
-            <legend>Chọn phương thức thanh toán:</legend>
-            <label class="payment-option">
-                <input type="radio" name="paymentMethod" value="qr" checked> Thanh toán qua QR
-            </label>
-            <label class="payment-option">
-                <input type="radio" name="paymentMethod" value="card"> Thanh toán bằng Visa/Thẻ ghi nợ
-            </label>
-            <label class="payment-option">
-                <input type="checkbox" name="payLater" value="true"> Thanh toán trả sau
-            </label>
-        </fieldset>
-					<button type="submit" class="pay-btn">Xác Nhận Thanh Toán</button>
+            
+            <!-- Lựa chọn thanh toán --> 
+            <fieldset class="payment-options-fieldset">
+                <legend>Chọn phương thức thanh toán:</legend>
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="qr" checked> Thanh toán qua QR
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="card"> Thanh toán bằng Visa/Thẻ ghi nợ
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="true"> Thanh toán trả sau
+                </label>
+            </fieldset>
+            <button type="submit" class="pay-btn-succes" onclick="return confirmPayment();">Xác Nhận Thanh Toán</button>
         </form>
     </div>
 </body>
